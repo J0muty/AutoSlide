@@ -47,3 +47,8 @@ redis-conf/users.acl
 alembic.ini
 alembic/script.py.mako
 alembic/versions/6346b6439c39_initial_schema.py
+.idea/misc.xml
+.idea/AutoSlide.iml
+.idea/workspace.xml
+*.xml
+/.idea
