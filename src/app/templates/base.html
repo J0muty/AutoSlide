@@ -1,10 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Базовая страничка</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="/static/base/base.css">
 </head>
 <body>
+    <header>
+        <div class="logo">PresentAI</div>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+    <aside class="sidebar" id="sidebar">
+        <div class="nav-container">
+            <nav>
+                <ul>
+                    <li><a href="#">Главная</a></li>
+                    <li><a href="#">Мои презентации</a></li>
+                    <li><a href="#">Подписка</a></li>
+                    <li><a href="#">Поддержка</a></li>
+                </ul>
+            </nav>
+        </div>
 
+        <div class="sidebar-info">
+            <div class="plan">Текущий тариф: Pro</div>
+            <div class="support-email">support@presentai.ru</div>
+        </div>
+
+        <div class="user-menu" id="userMenuContainer">
+            <div class="user-toggle" id="userToggle">
+                <span class="avatar">👤</span>
+                <span class="nickname">user_nickname</span>
+                <span class="arrow"></span>
+            </div>
+            <ul class="menu-list" id="userMenu">
+                <li><a href="#">Поддержка</a></li>
+                <li><a href="#">Подписка</a></li>
+                <li><a id="theme-toggle">Сменить тему</a></li>
+                <li class="logout"><a href="#">Выйти</a></li>
+            </ul>
+        </div>
+    </aside>
+    <main>
+    </main>
+    <script src="/static/base/base.js"></script>
 </body>
 </html>
