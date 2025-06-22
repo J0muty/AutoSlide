@@ -10,3 +10,6 @@ asyncpg~=0.30.0
 greenlet~=3.2.3
 alembic~=1.16.2
 psycopg2-binary~=2.9.10
+openai~=1.90.0
+aiohttp~=3.12.13
+requests~=2.32.4
