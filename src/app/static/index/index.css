@@ -1,21 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
 
-:root {
-    --bg:            #f0f2f5;
-    --sidebar-bg:    #ffffff;
-    --header-bg:     #ffffff;
-    --text:          #333333;
-    --hover-bg:      rgba(0, 0, 0, 0.05);
-    --transition:    0.25s;
-    --radius:        8px;
 
-    --hero-bg:       linear-gradient(135deg, #eef1f5 0%, #dce0e8 100%);
-    --showcase-bg:   radial-gradient(circle at top left, #e8edfb 0%, #f0f2f5 70%);
-    --cta-bg:        linear-gradient(135deg, #0066ff 0%, #00c6ff 100%);
-    --test-bg:       linear-gradient(180deg, var(--bg) 0%, #e9ecf1 100%);
 
-    --star:          #ffc107;
-}
 
 * {
     margin: 0;

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/register/register.css">
+    <link rel="stylesheet" href="/static/notification/notification.css">
+    <title>Регистрация</title>
+</head>
+<body>
+    <section class="register">
+        <form id="regForm" novalidate>
+            <h1 class="title">Создать аккаунт</h1>
+
+            <label>Логин
+                <input type="text" id="username" placeholder="Username" autocomplete="off" required>
+            </label>
+
+            <label>E-mail
+                <input type="email" id="email" placeholder="you@example.com" required>
+            </label>
+
+            <label>Пароль</label>
+            <div class="password-wrap">
+                <input type="password" id="password" placeholder="••••••" required>
+                <button type="button" class="toggle"><i class="fa-solid fa-eye"></i></button>
+            </div>
+
+            <label>Подтверждение пароля</label>
+            <div class="password-wrap">
+                <input type="password" id="confirm" placeholder="••••••" required>
+                <button type="button" class="toggle"><i class="fa-solid fa-eye"></i></button>
+            </div>
+
+            <ul class="rules" id="rules">
+                <li id="rule-length">От 6 символов</li>
+                <li id="rule-upper">Строчные и прописные буквы</li>
+                <li id="rule-spec">Минимум 1 спецсимвол</li>
+            </ul>
+
+            <button type="submit" class="btn btn--primary">Зарегистрироваться</button>
+        </form>
+    </section>
+
+    <script src="/static/notification/notification.js" defer></script>
+    <script src="/static/register/register.js" defer></script>
+</body>
+</html>

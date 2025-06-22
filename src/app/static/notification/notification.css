@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+
+:root{
+    --toast-gap:1rem;
+    --toast-width:300px;
+    --toast-padding:0.95rem 1.25rem;
+    --toast-radius:10px;
+    --toast-shadow:0 4px 14px rgba(0,0,0,.12);
+
+    --toast-success-bg:#2e7d32;
+    --toast-error-bg:#d32f2f;
+    --toast-warning-bg:#f9a825;
+
+    --toast-fg:#fff;
+    --progress-h:3px;
+    --progress-op:.6;
+    --slide:.35s cubic-bezier(.21,.61,.35,1);
+}
+
+.toast-container{
+    position:fixed;
+    top:var(--toast-gap);
+    right:var(--toast-gap);
+    display:flex;
+    flex-direction:column-reverse;
+    gap:var(--toast-gap);
+    z-index:9999;
+    font-family:"Poppins",sans-serif;
+}
+
+.toast{
+    width:var(--toast-width);
+    background:var(--toast-bg,var(--toast-success-bg));
+    color:var(--toast-fg);
+    border-radius:var(--toast-radius);
+    box-shadow:var(--toast-shadow);
+    padding:var(--toast-padding);
+    display:flex;
+    align-items:center;
+    gap:0.8rem;
+    position:relative;
+    cursor:grab;
+    animation:slideIn var(--slide) forwards;
+}
+
+.toast__icon{font-size:1.1rem}
+.toast__msg{flex:1 1 auto;font-size:0.95rem;line-height:1.35}
+.toast__close{
+    background:transparent;
+    border:none;
+    color:var(--toast-fg);
+    font-size:1rem;
+    cursor:pointer;
+    padding:0;
+    line-height:1;
+}
+
+.toast__progress{
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:100%;
+    height:var(--progress-h);
+    background:rgba(255,255,255,var(--progress-op));
+    transform-origin:left;
+    animation:bar linear forwards;
+}
+
+@keyframes slideIn{from{transform:translateX(120%);}to{transform:translateX(0);}}
+@keyframes slideOut{to{opacity:0;transform:translateX(120%);}}
+@keyframes bar{from{transform:scaleX(1);}to{transform:scaleX(0);}}
+
+.toast--success{--toast-bg:var(--toast-success-bg);}
+.toast--error  {--toast-bg:var(--toast-error-bg);}
+.toast--warning{--toast-bg:var(--toast-warning-bg);}
