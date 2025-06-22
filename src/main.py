@@ -28,6 +28,7 @@ app = FastAPI(lifespan=lifespan)
 
 app.add_middleware(SessionMiddleware, secret_key="absolutesecretkey")
 app.mount("/static", static_files, name="static")
+
 app.include_router(home_router) # Главная страничка
 
 if __name__ == "__main__":
