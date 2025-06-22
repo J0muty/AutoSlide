@@ -2,7 +2,7 @@ import logging
 from contextlib import asynccontextmanager
 import uvicorn
 from fastapi import FastAPI
-from src.app.routers import home_router
+from src.app.routers import home_router, index_router
 from src.base import postgres
 from src.base import redis
 from starlette.middleware.sessions import SessionMiddleware
@@ -29,7 +29,8 @@ app = FastAPI(lifespan=lifespan)
 app.add_middleware(SessionMiddleware, secret_key="absolutesecretkey")
 app.mount("/static", static_files, name="static")
 
-app.include_router(home_router) # Главная страничка
+app.include_router(index_router) # Главная страничка
+app.include_router(home_router, prefix="/app") # Главная страничка для презентаций
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", host="127.0.0.1", port=1488)
+    uvicorn.run("main:app", host="127.0.0.1", port=1489)
