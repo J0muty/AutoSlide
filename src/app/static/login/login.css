@@ -1,0 +1,141 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
+
+:root{
+    --bg:#f0f2f5;
+    --sidebar-bg:#ffffff;
+    --text:#333333;
+    --hover-bg:rgba(0,0,0,0.05);
+    --transition:0.25s;
+    --radius:8px;
+    --cta-bg:linear-gradient(135deg,#0066ff 0%,#00c6ff 100%);
+    --valid:#2e7d32;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+    font-family:"Inter",sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:100vh;
+}
+
+.register{
+    position: relative;
+    background:var(--sidebar-bg);
+    width:clamp(320px,90vw,420px);
+    padding:3rem 2.5rem;
+    border-radius:var(--radius);
+    box-shadow:0 4px 12px rgba(0,0,0,.1);
+}
+
+.back-arrow {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-size: 1.25rem;
+    color: var(--text);
+    text-decoration: none;
+    transition: filter var(--transition);
+}
+.back-arrow:hover {
+    filter: brightness(0.8);
+}
+
+.title{
+    text-align:center;
+    font-size:1.8rem;
+    margin-bottom:2rem;
+}
+
+label{
+    display:block;
+    font-size:0.95rem;
+    margin-bottom:0.6rem;
+}
+
+input{
+    width:100%;
+    padding:0.75rem 1rem;
+    border:1px solid #ccc;
+    border-radius:var(--radius);
+    font-size:1rem;
+    transition:border var(--transition),box-shadow var(--transition);
+}
+
+input:focus{
+    border-color:#0066ff;
+    box-shadow:0 0 0 3px rgba(0,102,255,.15);
+    outline:none;
+}
+
+.password-wrap{
+    position:relative;
+    display:flex;
+    align-items:center;
+    margin-bottom:1.25rem;
+}
+
+.password-wrap input{
+    padding-right:2.75rem;
+}
+
+.toggle{
+    position:absolute;
+    right:0.85rem;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:1.75rem;
+    height:1.75rem;
+    border:none;
+    background:transparent;
+    font-size:1.05rem;
+    cursor:pointer;
+    color:#666;
+}
+
+.btn{
+    width:100%;
+    padding:0.9rem;
+    border:none;
+    border-radius:var(--radius);
+    font-size:1rem;
+    cursor:pointer;
+    transition:filter var(--transition);
+}
+
+.btn--primary{
+    background:var(--cta-bg);
+    color:#fff;
+}
+
+.btn--primary:hover{
+    filter:brightness(.95);
+}
+
+.login-prompt {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.login-link {
+    text-decoration: underline;
+    cursor: pointer;
+    transition: filter var(--transition);
+}
+
+.login-link:hover {
+    filter: brightness(0.8);
+}
+
+.msg{
+    margin-top:1rem;
+    text-align:center;
+    font-size:0.9rem;
+    color:#e53935;
+}

@@ -7,4 +7,5 @@ index_router = APIRouter()
 
 @index_router.get("/", response_class=HTMLResponse)
 async def home(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
+    user_id = request.session.get("user_id")
+    return templates.TemplateResponse("index.html", {"request": request, "user_id": user_id})

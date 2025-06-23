@@ -10,26 +10,28 @@
 </head>
 <body>
     <section class="register">
-        <form id="regForm" novalidate>
+        <a href="/" class="back-arrow"><i class="fa-solid fa-arrow-left"></i></a>
+
+        <form id="regForm" action="/register" method="post" novalidate>
             <h1 class="title">Создать аккаунт</h1>
 
             <label>Логин
-                <input type="text" id="username" placeholder="Username" autocomplete="off" required>
+                <input type="text" id="username" name="username" placeholder="Логин" autocomplete="off" required>
             </label>
 
             <label>E-mail
-                <input type="email" id="email" placeholder="you@example.com" required>
+                <input type="email" id="email" name="email" placeholder="example@mail.ru" required>
             </label>
 
             <label>Пароль</label>
             <div class="password-wrap">
-                <input type="password" id="password" placeholder="••••••" required>
+                <input type="password" id="password" name="password" placeholder="••••••" required>
                 <button type="button" class="toggle"><i class="fa-solid fa-eye"></i></button>
             </div>
 
             <label>Подтверждение пароля</label>
             <div class="password-wrap">
-                <input type="password" id="confirm" placeholder="••••••" required>
+                <input type="password" id="confirm" name="confirm_password" placeholder="••••••" required>
                 <button type="button" class="toggle"><i class="fa-solid fa-eye"></i></button>
             </div>
 
@@ -40,6 +42,11 @@
             </ul>
 
             <button type="submit" class="btn btn--primary">Зарегистрироваться</button>
+
+            <p class="login-prompt">
+                Уже зарегистрированы?
+                <a href="/login" class="login-link">Войти</a>
+            </p>
         </form>
     </section>
 

@@ -3,9 +3,8 @@ from src.settings.config import db_user, db_password, db_host, db_port, db_name
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
 from sqlalchemy.engine import URL
 from sqlalchemy.pool import NullPool
-from sqlalchemy import text
-from src.base.postgres_models import Base
-
+from sqlalchemy import text, select, func
+from src.base.postgres_models import Base, User
 
 async_session: None | async_sessionmaker[AsyncSession] = None
 
@@ -51,3 +50,17 @@ def connect(method):
                     f'Ошибка при работе с базой данных: {repr(e)} \nargs:\n{args}'
                 )
     return wrapper
+
+@connect
+async def create_user(username: str, email: str, password: str, *, session: AsyncSession) :
+    new_user = User(username=username, email=email, password=password)
+    session.add(new_user)
+    await session.commit()
+    return new_user
+
+@connect
+async def get_user_by_username(username: str, *, session: AsyncSession) -> User | None:
+    result = await session.execute(
+        select(User).filter(func.lower(User.username) == username.lower())
+    )
+    return result.scalar_one_or_none()

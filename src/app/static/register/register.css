@@ -24,11 +24,25 @@ body{
 }
 
 .register{
+    position: relative;
     background:var(--sidebar-bg);
     width:clamp(320px,90vw,420px);
     padding:3rem 2.5rem;
     border-radius:var(--radius);
     box-shadow:0 4px 12px rgba(0,0,0,.1);
+}
+
+.back-arrow {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-size: 1.25rem;
+    color: var(--text);
+    text-decoration: none;
+    transition: filter var(--transition);
+}
+.back-arrow:hover {
+    filter: brightness(0.8);
 }
 
 .title{
@@ -113,6 +127,22 @@ input:focus{
 
 .btn--primary:hover{
     filter:brightness(.95);
+}
+
+.login-prompt {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.login-link {
+    text-decoration: underline;
+    cursor: pointer;
+    transition: filter var(--transition);
+}
+
+.login-link:hover {
+    filter: brightness(0.8);
 }
 
 .msg{

@@ -18,8 +18,12 @@
                     <a href="#faq" class="nav__link">FAQ</a>
                 </div>
                 <div class="actions" id="actions">
-                    <button class="btn btn--outline" id="login">Вход</button>
-                    <button class="btn btn--primary btn--lg" id="signup">Регистрация</button>
+                    {% if user_id %}
+                        <a href="/app/" class="btn btn--primary btn--lg">Приложение</a>
+                    {% else %}
+                        <button class="btn btn--outline" id="login" onclick="window.location.href='/login'">Вход</button>
+                        <button class="btn btn--primary btn--lg" id="signup" onclick="window.location.href='/register'">Регистрация</button>
+                    {% endif %}
                 </div>
             </nav>
             <button class="burger" id="burger">

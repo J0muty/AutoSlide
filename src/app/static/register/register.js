@@ -26,11 +26,11 @@ toggles.forEach(btn=>{
 });
 
 password.addEventListener('input',updateRules);
-confirm .addEventListener('input',updateConfirmRule);
+confirm.addEventListener('input',updateConfirmRule);
 
 password.addEventListener('focus',showMainRules);
 username.addEventListener('focus',showMainRules);
-confirm .addEventListener('focus',showConfirmRule);
+confirm.addEventListener('focus',showConfirmRule);
 
 function showMainRules(){
     const rules = document.getElementById('rules');
@@ -77,10 +77,5 @@ form.addEventListener('submit', e => {
         return;
     }
 
-    showNotification('success','Успешная регистрация');
-    form.reset();
-    visible = false;
-    toggles.forEach(b=>b.innerHTML='<i class="fa-solid fa-eye"></i>');
-    password.type = confirm.type = 'password';
-    showMainRules();
+    form.submit();
 });

@@ -2,9 +2,39 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/login/login.css">
+    <link rel="stylesheet" href="/static/notification/notification.css">
 </head>
 <body>
+    <section class="register">
+        <a href="/" class="back-arrow"><i class="fa-solid fa-arrow-left"></i></a>
 
+        <form id="loginForm" action="/login" method="post" novalidate>
+            <h1 class="title">Вход</h1>
+
+            <label>Логин
+                <input type="text" id="username" name="username" placeholder="Логин" autocomplete="off" required>
+            </label>
+
+            <label>Пароль</label>
+            <div class="password-wrap">
+                <input type="password" id="password" name="password" placeholder="••••••" required>
+                <button type="button" class="toggle"><i class="fa-solid fa-eye"></i></button>
+            </div>
+
+            <button type="submit" class="btn btn--primary">Войти</button>
+
+            <p class="login-prompt">
+                Еще не зарегистрированы?
+                <a href="/register" class="login-link">Зарегистрироваться</a>
+            </p>
+        </form>
+    </section>
+
+    <script src="/static/notification/notification.js" defer></script>
+    <script src="/static/login/login.js" defer></script>
 </body>
 </html>
