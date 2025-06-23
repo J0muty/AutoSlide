@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Тип презентации{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="/static/type_presentation/type_presentation.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<section class="type-selection">
+    <h1>Выберите тип презентации</h1>
+
+    <form id="typeForm" class="types">
+        <label class="type-card selected">
+            <input type="radio" name="presentation_type" value="informational" checked>
+            <span class="custom-radio"></span>
+            <div class="type-info">
+                <h3>Информационная презентация</h3>
+                <p>Подходит для учебных, обучающих и научных проектов. Акцент на донесении знаний и информации.</p>
+            </div>
+        </label>
+    </form>
+
+    <button id="nextBtn" class="next-btn" type="button">Далее</button>
+</section>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script src="/static/type_presentation/type_presentation.js"></script>
+{% endblock %}

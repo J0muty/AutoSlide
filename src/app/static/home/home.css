@@ -1,0 +1,134 @@
+.hero {
+    padding: 60px 20px 80px;
+    text-align: center;
+    background: var(--bg);
+    color: var(--text);
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+}
+
+.scenario-cards {
+    display: flex;
+    gap: 24px;
+    max-width: 1120px;
+    margin: 0 auto;
+}
+
+.scenario-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 0 0 260px;
+    background: var(--sidebar-bg);
+    border: 1px solid var(--hover-bg);
+    border-radius: var(--radius);
+    padding: 24px 22px;
+    text-decoration: none;
+    color: var(--text);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: transform var(--transition), box-shadow var(--transition);
+    min-height: 220px;
+}
+
+
+.scenario-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+}
+
+.scenario-card h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.scenario-card p {
+    font-size: 0.95rem;
+    line-height: 1.35;
+    opacity: 0.85;
+    flex: 1;
+}
+
+.arrow {
+    align-self: flex-end;
+    font-size: 1.4rem;
+}
+
+.user-toggle .arrow {
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid var(--text);
+    transition: transform var(--transition);
+    align-self: center;
+}
+
+.recent {
+    background: var(--sidebar-bg);
+    color: var(--text);
+    padding: 60px 20px;
+}
+
+.recent h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.recent-list {
+    max-width: 1120px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+}
+
+.recent-item {
+    display: block;
+    background: var(--bg);
+    color: var(--text);
+    border-radius: var(--radius);
+    overflow: hidden;
+    text-decoration: none;
+    border: 1px solid var(--hover-bg);
+    transition: box-shadow var(--transition);
+}
+
+.recent-item:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.recent-thumb {
+    height: 150px;
+    background: var(--hover-bg);
+}
+
+.recent-info {
+    padding: 16px 14px;
+}
+
+.recent-info h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.recent-info p {
+    font-size: 0.85rem;
+    opacity: 0.8;
+}
+
+@media (max-width: 700px) {
+    .hero h1 { font-size: 2rem; }
+    .hero p  { font-size: 1rem; }
+}

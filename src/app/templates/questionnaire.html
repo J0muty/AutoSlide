@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Создание презентации{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="/static/questionnaire/questionnaire.css">
+<link rel="stylesheet" href="/static/notification/notification.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<div class="wizard">
+
+    <div class="step active" data-step="0">
+        <h1>Напишите название или тему презентации</h1>
+        <input id="topicInput" type="text" placeholder="Введите тему" />
+        <div class="examples">
+            <span class="example">Энергия квантовых аккумуляторов</span>
+            <span class="example">Генеративный ИИ в дизайне 2025</span>
+            <span class="example">Зелёные мегаполисы будущего</span>
+        </div>
+    </div>
+
+    <div class="step" data-step="1">
+        <h1>Укажите количество слайдов презентации</h1>
+        <input id="slidesInput" type="number" min="1" max="50" value="10" />
+    </div>
+
+    <div class="step" data-step="2">
+        <h1>Выберите язык презентации</h1>
+        <label class="radio">
+            <input type="radio" name="lang" value="ru" checked />
+            <span class="custom-radio"></span>
+            <span>Русский</span>
+        </label>
+    </div>
+
+    <div class="step" data-step="3">
+        <h1>Настройте структуру презентации</h1>
+        <p class="placeholder">Настройки структуры будут здесь</p>
+    </div>
+
+    <div class="step" data-step="4">
+        <h1>Выберите стиль презентации</h1>
+        <p class="placeholder">Карточки выбора стиля появятся позже</p>
+    </div>
+
+    <div class="step" data-step="5">
+        <h1>Выберите стилистику изображений</h1>
+        <p class="placeholder">Выбор стилистики изображений появится позже</p>
+    </div>
+
+    <div class="wizard-nav">
+        <button id="backBtn" class="nav-btn back" type="button">Назад</button>
+        <button id="nextBtn" class="nav-btn next" type="button">Далее</button>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script defer src="/static/notification/notification.js"></script>
+<script defer src="/static/questionnaire/questionnaire.js"></script>
+{% endblock %}

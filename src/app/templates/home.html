@@ -1,17 +1,42 @@
 {% extends "base.html" %}
 {% block title %}AutoSlide{% endblock %}
+
 {% block content %}
 <link rel="stylesheet" href="/static/home/home.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
+<section class="hero">
+    <h1>Создайте презентацию с ИИ</h1>
+    <p>Выберите сценарий и просто начните</p>
+
+    <div class="scenario-cards">
+        <a href="/app/type_presentation" class="scenario-card" data-aos="zoom-in">
+            <h3>Введите тему</h3>
+            <p>ИИ мгновенно сгенерирует структуру и готовые слайды по вашей теме</p>
+            <span class="arrow">→</span>
+        </a>
+    </div>
+</section>
+
+<section class="recent" data-aos="fade-up">
+    <h2>Недавнее</h2>
+    <div class="recent-list">
+        <a href="#" class="recent-item">
+            <div class="recent-thumb"></div>
+            <div class="recent-info">
+                <h4>Название презентации</h4>
+                <p>Краткое описание или метаданные</p>
+            </div>
+        </a>
+    </div>
+</section>
 {% endblock %}
+
 {% block scripts %}
-    {{ super() }}
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
-      AOS.init({
-        offset: 0,
-        once: true
-      });
-    </script>
-    <script src="/static/home/home.js"></script>
+{{ super() }}
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init({ offset: 0, once: true });
+</script>
+<script src="/static/home/home.js"></script>
 {% endblock %}
