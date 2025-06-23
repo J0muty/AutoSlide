@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Базовая страничка</title>
+    <title>{% block title %}Базовая страничка{% endblock %}</title>
     <script>
     (function() {
         try {
@@ -33,8 +33,8 @@
                 <ul>
                     <li><a href="/app">Главная</a></li>
                     <li><a href="/app/presentations">Мои презентации</a></li>
-                    <li><a href="#">Подписка</a></li>
-                    <li><a href="#">Поддержка</a></li>
+                    <li><a href="/app/tariff">Тарифы</a></li>
+                    <li><a href="/app/support">Поддержка</a></li>
                 </ul>
             </nav>
         </div>
@@ -49,8 +49,6 @@
                 <span class="arrow"></span>
             </div>
             <ul class="menu-list" id="userMenu">
-                <li><a href="#">Поддержка</a></li>
-                <li><a href="#">Подписка</a></li>
                 <li><a id="theme-toggle">Сменить тему</a></li>
                 <li class="logout"><a href="/logout">Выйти</a></li>
             </ul>

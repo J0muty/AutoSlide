@@ -1,0 +1,63 @@
+.presentations-page {
+    padding: 0px 20px 20px;
+}
+
+.presentations-page h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+    color: var(--text);
+}
+
+.presentation-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 400px);
+    gap: 20px;
+    justify-content: start;
+}
+
+.presentation-card {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: var(--sidebar-bg);
+    border-radius: var(--radius);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.presentation-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.preview {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text);
+    font-size: 1rem;
+}
+
+.info {
+    margin-top: 8px;
+}
+
+.title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.date {
+    font-size: 0.85rem;
+    color: var(--text);
+    opacity: 0.7;
+    margin-top: 4px;
+}

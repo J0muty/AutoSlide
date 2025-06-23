@@ -1,12 +1,16 @@
 import logging
 from contextlib import asynccontextmanager
+
 import uvicorn
 from fastapi import FastAPI
-from src.app.routers import home_router, index_router, auth_router, create_presentation_router, my_presentations_router
+from starlette.middleware.sessions import SessionMiddleware
+
+from src.app.routers import home_router, index_router, auth_router, create_presentation_router, my_presentations_router, \
+    tariff_router, support_router
 from src.base import postgres
 from src.base import redis
-from starlette.middleware.sessions import SessionMiddleware
 from src.settings.settings import static_files
+
 
 @asynccontextmanager
 async def lifespan(_app: FastAPI):
@@ -34,6 +38,8 @@ app.include_router(home_router, prefix="/app") # Главная страничк
 app.include_router(auth_router) # Регистрация и вход
 app.include_router(create_presentation_router, prefix="/app") # Роут создания презентаций
 app.include_router(my_presentations_router, prefix="/app") # Роут для презентаций пользователя
+app.include_router(tariff_router, prefix="/app") # Роут для тарифов
+app.include_router(support_router, prefix="/app") # Роут для поддержки
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host="127.0.0.1", port=1489)

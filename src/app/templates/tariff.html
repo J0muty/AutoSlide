@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% block title %}Тарифы{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="/static/tariff/tariff.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<section class="pricing">
+    <h1 class="pricing__title" data-aos="fade-up">Доступные тарифы</h1>
+
+    <div class="pricing__tabs" data-aos="fade-up" data-aos-delay="50">
+        <button class="tab active" data-tab="tariffs">Тарифы</button>
+        <button class="tab" data-tab="builder">Конструктор тарифов</button>
+        <button class="tab" data-tab="single">Одиночная покупка</button>
+    </div>
+
+    <div class="tab-content active" id="tab-tariffs" data-aos="fade-up" data-aos-delay="100">
+        <div class="pricing__cards">
+            <div class="card card--starter">
+                <h2 class="card__name">Starter</h2>
+                <div class="card__price"><span>349</span><small>&nbsp;₽/мес</small></div>
+                <ul class="card__features">
+                    <li><i class="fa-solid fa-check"></i>25&nbsp;слайдов</li>
+                    <li><i class="fa-solid fa-check"></i>Без водяного знака</li>
+                    <li><i class="fa-solid fa-check"></i>Скачивание в&nbsp;PowerPoint</li>
+                </ul>
+                <button class="card__btn">Подключить</button>
+            </div>
+
+            <div class="card card--standard">
+                <h2 class="card__name">Standard</h2>
+                <div class="card__price"><span>799</span><small>&nbsp;₽/мес</small></div>
+                <ul class="card__features">
+                    <li><i class="fa-solid fa-check"></i>100&nbsp;слайдов</li>
+                    <li><i class="fa-solid fa-check"></i>Без водяного знака</li>
+                    <li><i class="fa-solid fa-check"></i>Скачивание в&nbsp;PowerPoint</li>
+                    <li><i class="fa-solid fa-check"></i>Премиум текстовые ИИ-модели</li>
+                </ul>
+                <button class="card__btn">Подключить</button>
+            </div>
+
+            <div class="card card--pro popular">
+                <div class="card__badge">Популярный</div>
+                <h2 class="card__name">Pro</h2>
+                <div class="card__price"><span>1&nbsp;599</span><small>&nbsp;₽/мес</small></div>
+                <ul class="card__features">
+                    <li><i class="fa-solid fa-check"></i>200&nbsp;слайдов</li>
+                    <li><i class="fa-solid fa-check"></i>Безлимитная генерация изображений</li>
+                    <li><i class="fa-solid fa-check"></i>Премиум текстовые ИИ-модели</li>
+                    <li><i class="fa-solid fa-check"></i>Приоритетная поддержка</li>
+                </ul>
+                <button class="card__btn card__btn--primary">Подключить</button>
+            </div>
+
+            <div class="card card--team">
+                <h2 class="card__name">Team</h2>
+                <div class="card__price"><span>2&nbsp;999</span><small>&nbsp;₽/мес</small></div>
+                <ul class="card__features">
+                    <li><i class="fa-solid fa-check"></i>400&nbsp;слайдов</li>
+                    <li><i class="fa-solid fa-check"></i>До&nbsp;3&nbsp;пользователей</li>
+                    <li><i class="fa-solid fa-check"></i>Безлимитная генерация изображений</li>
+                    <li><i class="fa-solid fa-check"></i>Премиум текстовые ИИ-модели</li>
+                </ul>
+                <button class="card__btn">Подключить</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-content" id="tab-builder" data-aos="fade-up" data-aos-delay="100">
+        <div class="builder">
+            <div class="builder__control">
+                <label for="builder-slides">Слайды: <span id="builder-slides-val">50</span></label>
+                <input type="range" id="builder-slides" min="10" max="400" value="50" step="10">
+            </div>
+            <div class="builder__control">
+                <label for="builder-users">Пользователи: <span id="builder-users-val">1</span></label>
+                <input type="range" id="builder-users" min="1" max="10" value="1">
+            </div>
+            <div class="builder__summary">
+                <span>Итого: <strong id="builder-total">0</strong> ₽/мес</span>
+                <button class="builder__btn">Подключить</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-content" id="tab-single" data-aos="fade-up" data-aos-delay="100">
+        <div class="single">
+            <div class="single__control">
+                <label for="single-pages">Страницы: <span id="single-pages-val">1</span></label>
+                <input type="range" id="single-pages" min="1" max="20" value="1">
+            </div>
+            <div class="single__summary">
+                <span>Стоимость: <strong id="single-total">39</strong> ₽</span>
+                <button class="single__btn">Купить</button>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+    AOS.init({ offset: 0, once: true });
+</script>
+<script src="/static/tariff/tariff.js"></script>
+{% endblock %}

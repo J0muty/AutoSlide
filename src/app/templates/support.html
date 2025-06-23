@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Поддержка{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="/static/support/support.css">
+<div class="support-page">
+    <h1>Поддержка</h1>
+    <form class="support-form">
+        <label for="nickname">Никнейм</label>
+        <input type="text" id="nickname" name="nickname" placeholder="Ваш никнейм">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="example@mail.com">
+        <label for="message">Сообщение</label>
+        <textarea id="message" name="message" placeholder="Ваше обращение"></textarea>
+        <button type="submit">Отправить</button>
+    </form>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init({ offset: 0, once: true });
+</script>
+<script src="/static/support/support.js"></script>
+{% endblock %}
