@@ -80,19 +80,37 @@ nextBtn.addEventListener('click', async () => {
     }
 });
 
+let sortable;
+
+function enableDragging() {
+    if (sortable) sortable.destroy();
+    sortable = Sortable.create(slidesContainer, {
+        animation: 150,
+        ghostClass: 'sortable-ghost',
+        chosenClass: 'sortable-chosen',
+        dragClass: 'sortable-drag',
+        onEnd: updateSlideNumbers
+    });
+}
+
+function updateSlideNumbers() {
+  Array.from(slidesContainer.children).forEach((item, i) => {
+    const text = item.dataset.title;
+    item.querySelector('span').textContent = `${i + 1}. ${text}`;
+  });
+}
+
 function renderSlides(raw) {
-    let lines = raw
+    const lines = raw
         .split(/\n+/)
-        .map(l => l.trim())
+        .map(l => l.trim().replace(/^\d+\.\s*/, ''))
         .filter(Boolean);
 
     if (lines.length === 1) {
         const found = raw.match(/\d+\.\s[^0-9]+?(?=(\d+\.)|$)/g);
-        if (found) {
-            lines = found.map(s => s.trim());
-        }
-    }
 
+        if (found) lines = found.map(s => s.trim().replace(/^\d+\.\s*/, ''));
+    }
     slidesContainer.innerHTML = '';
     slidesContainer.classList.remove('hidden');
     placeholderText.style.display = 'none';
@@ -102,9 +120,11 @@ function renderSlides(raw) {
         item.className = 'slide-item';
         item.id = `slide-${idx + 1}`;
 
+        item.draggable = true;
+        item.dataset.title = text;
         const title = document.createElement('span');
-        title.textContent = text;
 
+        title.textContent = `${idx + 1}. ${text}`;
         const dots = document.createElement('i');
         dots.className = 'fa-solid fa-ellipsis';
 
@@ -112,6 +132,7 @@ function renderSlides(raw) {
         item.appendChild(dots);
         slidesContainer.appendChild(item);
     });
+    enableDragging();
 }
 
 showStep(0);

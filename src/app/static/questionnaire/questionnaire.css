@@ -1,5 +1,9 @@
+.hidden {
+    display: none !important;
+}
+
 .wizard {
-    max-width: 760px;
+    max-width: 900px;
     margin: 40px auto;
     padding: 0 20px;
 }
@@ -14,8 +18,8 @@
 }
 
 @keyframes fade {
-    from {opacity: 0; transform: translateY(6px);}
-    to   {opacity: 1; transform: translateY(0);}
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
 .step h1 {
@@ -54,7 +58,7 @@ input[type="number"] {
 }
 
 .example:hover {
-    background: rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.1);
 }
 
 .radio {
@@ -75,6 +79,7 @@ input[type="number"] {
     border-radius: 50%;
     position: relative;
 }
+
 .radio input:checked + .custom-radio::after {
     content: '';
     position: absolute;
@@ -115,7 +120,7 @@ input[type="number"] {
 }
 
 .back:hover {
-    background: rgba(0,0,0,0.07);
+    background: rgba(0, 0, 0, 0.07);
 }
 
 .next {
@@ -125,13 +130,16 @@ input[type="number"] {
 
 .next:hover {
     background: #1580ee;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 body.dark-theme .back {
-    background: rgba(255,255,255,0.08);
+    background: rgba(255, 255, 255, 0.08);
+}
 
-body.dark-theme .back:hover { background: rgba(255,255,255,0.15); }
+body.dark-theme .back:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
 
 .slides-list {
     display: grid;
@@ -147,15 +155,12 @@ body.dark-theme .back:hover { background: rgba(255,255,255,0.15); }
     background: var(--sidebar-bg);
     border: 1px solid var(--hover-bg);
     border-radius: calc(var(--radius) * 1.5);
-
     padding: 18px 24px;
     width: 100%;
-
     font-size: 1.15rem;
     font-weight: 600;
     color: var(--text);
     line-height: 1.35;
-
     box-shadow: 0 2px 6px rgb(0 0 0 / .15);
     transition: transform .15s ease, box-shadow .15s ease;
 }
@@ -165,8 +170,21 @@ body.dark-theme .back:hover { background: rgba(255,255,255,0.15); }
 }
 
 .slide-item i {
-    color: rgba(255,255,255,0.55);
+    color: rgba(255, 255, 255, 0.55);
     font-size: 1.2rem;
     cursor: pointer;
 }
-.slide-item i:hover { color: rgba(255,255,255,0.85); }
+
+.slide-item i:hover {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.slides-list .sortable-chosen {
+    opacity: 0.6;
+}
+.slides-list .sortable-ghost {
+    opacity: 0.3;
+}
+.slides-list .sortable-over {
+    border-top: 2px solid #1e90ff;
+}
