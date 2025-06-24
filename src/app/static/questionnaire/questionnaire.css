@@ -1,3 +1,20 @@
+:root {
+    --bg: #f0f2f5;
+    --sidebar-bg: #ffffff;
+    --header-bg: #ffffff;
+    --text: #333333;
+    --hover-bg: rgba(0, 0, 0, 0.05);
+    --transition: 0.25s;
+    --radius: 8px;
+}
+
+.dark-theme body {
+    --bg: #181a1b;
+    --sidebar-bg: #1e1e1e;
+    --header-bg: #1e1e1e;
+    --text: #e0e0e0;
+}
+
 .hidden {
     display: none !important;
 }
@@ -98,6 +115,7 @@ input[type="number"] {
     font-size: 0.95rem;
 }
 
+/* навигация */
 .wizard-nav {
     margin-top: 40px;
     display: flex;
@@ -142,10 +160,109 @@ body.dark-theme .back:hover {
 }
 
 .slides-list {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
     margin-top: 24px;
+    position: relative;
+}
+
+.slide-insert {
+    height: 10px;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background var(--transition);
+}
+
+.slide-insert:hover {
+    background: rgba(30, 144, 255, 0.15);
+}
+
+.insert-btn {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #1e90ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity var(--transition);
+    pointer-events: none;
+}
+
+.insert-btn i {
+    color: #ffffff;
+    font-size: 14px;
+    line-height: 0;
+}
+
+.slide-insert:hover .insert-btn {
+    opacity: 1;
+}
+
+.slide-item i.fa-ellipsis {
+    color: var(--text);
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: var(--sidebar-bg);
+    border: none;
+    border-radius: calc(var(--radius) * 1.5);
+    padding: 32px;
+    width: min(90%, 700px);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+}
+
+.modal-actions .btn {
+    padding: 10px 28px;
+    font-weight: 600;
+    border-radius: var(--radius);
+    cursor: pointer;
+    border: none;
+}
+
+.cancel {
+    background: var(--hover-bg);
+    color: var(--text);
+}
+
+.create {
+    background: #1e90ff;
+    color: #fff;
+    opacity: 0.45;
+    cursor: not-allowed !important;
+}
+
+.create.enabled {
+    opacity: 1;
+    cursor: pointer !important;
+}
+
+input[type="text"]:focus{
+    outline:none;
+    border-color:#1e90ff;
 }
 
 .slide-item {
@@ -161,12 +278,12 @@ body.dark-theme .back:hover {
     font-weight: 600;
     color: var(--text);
     line-height: 1.35;
-    box-shadow: 0 2px 6px rgb(0 0 0 / .15);
-    transition: transform .15s ease, box-shadow .15s ease;
+    box-shadow: 0 2px 6px rgb(0 0 0 / 0.15);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .slide-item:hover {
-    box-shadow: 0 6px 18px rgb(0 0 0 / .25);
+    box-shadow: 0 6px 18px rgb(0 0 0 / 0.25);
 }
 
 .slide-item i {
@@ -175,16 +292,14 @@ body.dark-theme .back:hover {
     cursor: pointer;
 }
 
-.slide-item i:hover {
-    color: rgba(255, 255, 255, 0.85);
-}
-
 .slides-list .sortable-chosen {
     opacity: 0.6;
 }
+
 .slides-list .sortable-ghost {
     opacity: 0.3;
 }
+
 .slides-list .sortable-over {
     border-top: 2px solid #1e90ff;
 }
