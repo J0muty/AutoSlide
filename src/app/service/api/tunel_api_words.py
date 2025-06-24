@@ -1,8 +1,10 @@
-import os, asyncio
+import os
+import asyncio
 from dotenv import load_dotenv
 from openai import AsyncOpenAI
 
 load_dotenv()
+
 AITUNNEL_API = os.getenv("AITUNNEL_API")
 if not AITUNNEL_API:
     raise EnvironmentError("Set the AITUNNEL_API environment variable.")
@@ -11,7 +13,7 @@ BASE_URL = "https://api.aitunnel.ru/v1/"
 client = AsyncOpenAI(api_key=AITUNNEL_API, base_url=BASE_URL)
 
 
-async def chat_completion(model: str, messages: list, max_tokens: int = 1024):
+async def chat_completion(model: str, messages: list, max_tokens: int = 1024) -> str:
     resp = await client.chat.completions.create(
         model=model,
         messages=messages,
@@ -20,19 +22,20 @@ async def chat_completion(model: str, messages: list, max_tokens: int = 1024):
     return resp.choices[0].message.content.strip()
 
 
-async def compose_structure(topic: str) -> str:
+async def compose_structure(topic: str, slides: int, lang: str = "ru") -> str:
     messages = [
         {
             "role": "system",
             "content": (
-                "Ты эксперт по презентациям. Сделай план из 8-10 слайдов: "
-                "номер, заголовок, ключевые тезисы, идея визуала."
+                f"Ты эксперт по созданию презентаций. "
+                f"Сделай план из {slides} слайдов. "
+                f"Выводи только нумерованный список с названиями слайдов, "
+                f"без описаний и лишних символов. Язык: {lang}."
             ),
         },
         {"role": "user", "content": f"Тема презентации: {topic}"},
     ]
     return await chat_completion("gpt-4.1-nano", messages)
-
 
 async def search_info(query: str) -> str:
     messages = [
@@ -48,21 +51,11 @@ async def search_info(query: str) -> str:
     return await chat_completion("gpt-4o-mini-search-preview", messages)
 
 
-async def main():
-    topic = input("Введите тему презентации: ")
-
-    structure = await compose_structure(topic)
-    print("\nСтруктура презентации:\n" + "─" * 70)
-    print(structure)
-
-    while True:
-        q = input("\nВведите запрос для поиска (Enter чтобы выйти): ").strip()
-        if not q:
-            break
-        facts = await search_info(q)
-        print("\nПоиск в интернете:\n" + "─" * 70)
-        print(facts)
-
-
 if __name__ == "__main__":
+    async def main():
+        topic = input("Введите тему презентации: ").strip()
+        slides = int(input("Сколько слайдов нужно? ").strip() or "8")
+        struct = await compose_structure(topic, slides)
+        print(struct)
+
     asyncio.run(main())

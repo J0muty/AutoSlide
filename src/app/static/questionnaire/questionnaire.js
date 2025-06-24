@@ -3,6 +3,7 @@ const backBtn = document.getElementById('backBtn');
 const nextBtn = document.getElementById('nextBtn');
 const topicInp = document.getElementById('topicInput');
 const examples = document.querySelectorAll('.example');
+const structureEl = document.getElementById('structureResult');
 
 let current = 0;
 
@@ -24,29 +25,50 @@ backBtn.addEventListener('click', () => {
     if (current > 0) showStep(current - 1);
 });
 
-nextBtn.addEventListener('click', () => {
-    if (current === 0) {
-        if (topicInp.value.trim() === '') {
-            showNotification('error', 'Пожалуйста, введите тему презентации', 4000);
-            return;
-        }
+nextBtn.addEventListener('click', async () => {
+    if (current === 0 && topicInp.value.trim() === '') {
+        showNotification('error', 'Пожалуйста, введите тему презентации', 4000);
+        return;
     }
     if (current === 1) {
-        const slides = document.getElementById('slidesInput').value;
+        const slides = +document.getElementById('slidesInput').value;
         if (!slides || slides < 1) {
             showNotification('error', 'Введите корректное количество слайдов (минимум 1)', 4000);
             return;
         }
     }
+
+    if (current === 2) {
+        const payload = {
+            topic: topicInp.value.trim(),
+            slides: +document.getElementById('slidesInput').value,
+            lang: document.querySelector('input[name="lang"]:checked').value
+        };
+
+        showStep(3);
+        structureEl.textContent = 'Генерируем структуру, подождите…';
+
+        try {
+            const res = await fetch('/app/generate_structure', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(payload)
+            });
+
+            if (!res.ok) throw new Error('Ошибка ответа сервера');
+            const data = await res.json();
+            structureEl.textContent = data.structure;
+        } catch (err) {
+            structureEl.textContent = 'Не удалось сгенерировать структуру: ' + err.message;
+        }
+
+        return;
+    }
+
     if (current < steps.length - 1) {
         showStep(current + 1);
     } else {
-        const payload = {
-            topic: topicInp.value.trim(),
-            slides: document.getElementById('slidesInput').value,
-            lang: document.querySelector('input[name="lang"]:checked').value
-        };
-        console.log('Форма готова к отправке:', payload);
+        console.log('Всё готово');
     }
 });
 
