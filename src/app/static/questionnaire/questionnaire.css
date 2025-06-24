@@ -19,7 +19,7 @@
 }
 
 .step h1 {
-    font-size: 1.8rem;
+    font-size: 1.9rem;
     font-weight: 700;
     margin-bottom: 24px;
     color: var(--text);
@@ -75,7 +75,6 @@ input[type="number"] {
     border-radius: 50%;
     position: relative;
 }
-
 .radio input:checked + .custom-radio::after {
     content: '';
     position: absolute;
@@ -131,8 +130,43 @@ input[type="number"] {
 
 body.dark-theme .back {
     background: rgba(255,255,255,0.08);
+
+body.dark-theme .back:hover { background: rgba(255,255,255,0.15); }
+
+.slides-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 24px;
 }
 
-body.dark-theme .back:hover {
-    background: rgba(255,255,255,0.15);
+.slide-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--sidebar-bg);
+    border: 1px solid var(--hover-bg);
+    border-radius: calc(var(--radius) * 1.5);
+
+    padding: 18px 24px;
+    width: 100%;
+
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.35;
+
+    box-shadow: 0 2px 6px rgb(0 0 0 / .15);
+    transition: transform .15s ease, box-shadow .15s ease;
 }
+
+.slide-item:hover {
+    box-shadow: 0 6px 18px rgb(0 0 0 / .25);
+}
+
+.slide-item i {
+    color: rgba(255,255,255,0.55);
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+.slide-item i:hover { color: rgba(255,255,255,0.85); }

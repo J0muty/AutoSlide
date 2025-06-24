@@ -3,7 +3,8 @@ const backBtn = document.getElementById('backBtn');
 const nextBtn = document.getElementById('nextBtn');
 const topicInp = document.getElementById('topicInput');
 const examples = document.querySelectorAll('.example');
-const structureEl = document.getElementById('structureResult');
+const placeholderText = document.getElementById('placeholderText');
+const slidesContainer = document.getElementById('slidesContainer');
 
 let current = 0;
 
@@ -15,21 +16,24 @@ function showStep(index) {
     nextBtn.textContent = current === steps.length - 1 ? 'Готово' : 'Далее';
 }
 
-examples.forEach(example => {
-    example.addEventListener('click', () => {
-        topicInp.value = example.textContent;
+examples.forEach(ex => {
+    ex.addEventListener('click', () => {
+        topicInp.value = ex.textContent;
     });
 });
 
 backBtn.addEventListener('click', () => {
-    if (current > 0) showStep(current - 1);
+    if (current > 0) {
+        showStep(current - 1);
+    }
 });
 
 nextBtn.addEventListener('click', async () => {
-    if (current === 0 && topicInp.value.trim() === '') {
+    if (current === 0 && !topicInp.value.trim()) {
         showNotification('error', 'Пожалуйста, введите тему презентации', 4000);
         return;
     }
+
     if (current === 1) {
         const slides = +document.getElementById('slidesInput').value;
         if (!slides || slides < 1) {
@@ -46,20 +50,26 @@ nextBtn.addEventListener('click', async () => {
         };
 
         showStep(3);
-        structureEl.textContent = 'Генерируем структуру, подождите…';
+        placeholderText.textContent = 'Генерируем структуру, подождите…';
+        placeholderText.style.display = 'block';
+        slidesContainer.classList.add('hidden');
 
         try {
             const res = await fetch('/app/generate_structure', {
                 method: 'POST',
-                headers: {'Content-Type': 'application/json'},
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
             });
 
-            if (!res.ok) throw new Error('Ошибка ответа сервера');
-            const data = await res.json();
-            structureEl.textContent = data.structure;
+            if (!res.ok) {
+                throw new Error('Ошибка ответа сервера');
+            }
+
+            const { structure } = await res.json();
+            renderSlides(structure);
+
         } catch (err) {
-            structureEl.textContent = 'Не удалось сгенерировать структуру: ' + err.message;
+            placeholderText.textContent = 'Не удалось сгенерировать структуру: ' + err.message;
         }
 
         return;
@@ -67,9 +77,41 @@ nextBtn.addEventListener('click', async () => {
 
     if (current < steps.length - 1) {
         showStep(current + 1);
-    } else {
-        console.log('Всё готово');
     }
 });
+
+function renderSlides(raw) {
+    let lines = raw
+        .split(/\n+/)
+        .map(l => l.trim())
+        .filter(Boolean);
+
+    if (lines.length === 1) {
+        const found = raw.match(/\d+\.\s[^0-9]+?(?=(\d+\.)|$)/g);
+        if (found) {
+            lines = found.map(s => s.trim());
+        }
+    }
+
+    slidesContainer.innerHTML = '';
+    slidesContainer.classList.remove('hidden');
+    placeholderText.style.display = 'none';
+
+    lines.forEach((text, idx) => {
+        const item = document.createElement('div');
+        item.className = 'slide-item';
+        item.id = `slide-${idx + 1}`;
+
+        const title = document.createElement('span');
+        title.textContent = text;
+
+        const dots = document.createElement('i');
+        dots.className = 'fa-solid fa-ellipsis';
+
+        item.appendChild(title);
+        item.appendChild(dots);
+        slidesContainer.appendChild(item);
+    });
+}
 
 showStep(0);
