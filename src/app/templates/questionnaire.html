@@ -1,17 +1,19 @@
-<!-- questionner.html -->
 {% extends "base.html" %}
 {% block title %}Создание презентации{% endblock %}
 
 {% block content %}
 <link rel="stylesheet" href="/static/questionnaire/questionnaire.css">
 <link rel="stylesheet" href="/static/notification/notification.css">
+<link rel="preload" href="/static/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="/static/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="/static/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <div class="wizard">
 
     <div class="step active" data-step="0">
         <h1>Напишите название или тему презентации</h1>
-        <input id="topicInput" type="text" placeholder="Введите тему" />
+        <input id="topicInput" type="text" placeholder="Введите тему">
         <div class="examples">
             <span class="example">Энергия квантовых аккумуляторов</span>
             <span class="example">Генеративный ИИ в дизайне 2025</span>
@@ -21,22 +23,31 @@
 
     <div class="step" data-step="1">
         <h1>Укажите количество слайдов презентации</h1>
-        <input id="slidesInput" type="number" min="1" max="30" value="3" />
+        <input id="slidesInput" type="number" min="1" max="30" value="3">
     </div>
 
     <div class="step" data-step="2">
         <h1>Выберите язык презентации</h1>
         <label class="radio">
-            <input type="radio" name="lang" value="ru" checked />
+            <input type="radio" name="lang" value="ru" checked>
             <span class="custom-radio"></span>
             <span>Русский</span>
         </label>
     </div>
 
     <div class="step" data-step="3">
-        <h1>Сформированная структура презентации</h1>
+        <div class="heading-row">
+            <h1>Сформированная структура презентации</h1>
+            <button class="add-slide-btn" type="button">
+                <i class="fa-solid fa-plus"></i>
+                <span>Добавить слайд</span>
+            </button>
+        </div>
+        <div id="loader" class="loader hidden"></div>
         <pre id="placeholderText" class="placeholder">Структура будет сгенерирована…</pre>
-        <div id="slidesContainer" class="slides-list hidden"></div>
+        <div class="slides-wrapper">
+            <div id="slidesContainer" class="slides-list hidden"></div>
+        </div>
     </div>
 
     <div class="step" data-step="4">
