@@ -9,7 +9,6 @@
 <link rel="stylesheet" href="/static/questionnaire/steps_css/step3.css">
 <link rel="stylesheet" href="/static/questionnaire/steps_css/step4.css">
 <link rel="stylesheet" href="/static/questionnaire/steps_css/step5.css">
-
 <link rel="stylesheet" href="/static/notification/notification.css">
 <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -57,7 +56,72 @@
 
     <div class="step" data-step="4">
         <h1>Выберите стиль презентации</h1>
-        <p class="placeholder">Карточки выбора стиля появятся позже</p>
+
+        <div class="layout">
+
+            <div class="left-column">
+                <div class="style-options">
+                    <button class="style-btn active" data-style="modern">
+                        <i class="fa-regular fa-star"></i>
+                        Современный
+                    </button>
+                    <button class="style-btn" data-style="creative">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        Креативный
+                    </button>
+                    <button class="style-btn" data-style="classic">
+                        <i class="fa-solid fa-scroll"></i>
+                        Классический
+                    </button>
+                </div>
+
+                <div class="style-preview" id="stylePreview">
+                    <div class="slide-cover">
+                        <img src="https://placehold.co/500x220/png" alt="Preview">
+                        <div class="cover-text">
+                            <h3>Пример текста заголовка для обложки презентации современного шаблона</h3>
+                            <p>Это пример подзаголовка, предназначенного для демонстрации стиля современного шаблона, обеспечивая чёткость и соответствие текущему дизайну.</p>
+                        </div>
+                    </div>
+                    <div class="slide-inner">
+                        <img src="https://placehold.co/500x220/png" alt="Preview">
+                        <div class="inner-text">
+                            <h3>Пример текста для заголовка, описание ключевой мысли слайда</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-column">
+                <h2>Цвет и шрифт презентации</h2>
+
+                <div class="theme-grid" id="themeGrid">
+                    <div class="theme-card active" data-theme="white">
+                        <div class="card-inner white">
+                            <h3>Заголовок</h3>
+                            <p>Основной текст</p>
+                        </div>
+                        <span class="theme-name">Белый</span>
+                    </div>
+
+                    <div class="theme-card" data-theme="black">
+                        <div class="card-inner black">
+                            <h3>Заголовок</h3>
+                            <p>Основной текст</p>
+                        </div>
+                        <span class="theme-name">Чёрный</span>
+                    </div>
+
+                    <div class="theme-card" data-theme="light-gray">
+                        <div class="card-inner light-gray">
+                            <h3>Заголовок</h3>
+                            <p>Основной текст</p>
+                        </div>
+                        <span class="theme-name">Светло-серый</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="step" data-step="5">
@@ -76,7 +140,6 @@
 {{ super() }}
 <script defer src="/static/notification/notification.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
-
 <script defer src="/static/questionnaire/questionnaire.js"></script>
 <script defer src="/static/questionnaire/steps_js/step0.js"></script>
 <script defer src="/static/questionnaire/steps_js/step1.js"></script>
