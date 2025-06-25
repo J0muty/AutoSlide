@@ -9,8 +9,8 @@ create_presentation_router = APIRouter()
 
 @create_presentation_router.get("/type_presentation", response_class=HTMLResponse)
 async def type_presentation(request: Request, user_id: int = Depends(require_user)):
-    request.session["can_access_questionnaire"] = False
-    request.session.pop("presentation_type", None)
+    # request.session["can_access_questionnaire"] = False
+    # request.session.pop("presentation_type", None)
     return templates.TemplateResponse(
         "type_presentation.html",
         {"request": request, "user_id": user_id}
@@ -31,8 +31,8 @@ async def set_presentation_type(request: Request, user_id: int = Depends(require
 
 @create_presentation_router.get("/questionnaire", response_class=HTMLResponse)
 async def questionnaire(request: Request, user_id: int = Depends(require_user)):
-    if not request.session.pop("can_access_questionnaire", False):
-        return RedirectResponse("/app/type_presentation", status_code=status.HTTP_303_SEE_OTHER)
+    # if not request.session.pop("can_access_questionnaire", False):
+    #     return RedirectResponse("/app/type_presentation", status_code=status.HTTP_303_SEE_OTHER)
 
     return templates.TemplateResponse(
         "questionnaire.html",
