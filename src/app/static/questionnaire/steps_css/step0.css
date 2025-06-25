@@ -1,0 +1,16 @@
+.examples {
+    margin-top: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.example {
+    padding: 8px 14px;
+    background: var(--hover-bg);
+    border-radius: var(--radius);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background var(--transition);
+}
+.example:hover { background: rgba(0,0,0,0.1); }
