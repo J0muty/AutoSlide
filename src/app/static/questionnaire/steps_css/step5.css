@@ -1,0 +1,87 @@
+.image-style-layout {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.image-style-list {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 360px;
+}
+
+.image-style-option {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 18px 24px;
+    border: none;
+    border-radius: var(--radius);
+    background: var(--sidebar-bg);
+    cursor: pointer;
+    transition: background var(--transition), box-shadow var(--transition);
+}
+
+.image-style-option:hover {
+    background: var(--hover-bg);
+}
+
+.image-style-option.active {
+    box-shadow: inset 0 0 0 2px #1e90ff;
+}
+
+.image-style-option img {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    border-radius: var(--radius);
+}
+
+.image-style-option .label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.image-style-option .radio {
+    position: absolute;
+    top: 50%;
+    right: 24px;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 3px solid var(--hover-bg);
+    box-sizing: border-box;
+}
+
+.image-style-option.active .radio {
+    background: #1e90ff;
+    border-color: #1e90ff;
+}
+
+@media (max-width: 1000px) {
+    .image-style-layout {
+        flex-direction: column;
+    }
+
+    .image-style-list {
+        width: 100%;
+    }
+}
+
+.dark-theme body .image-style-option:hover {
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.dark-theme body .image-style-option .radio {
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.dark-theme body .image-style-option .label {
+    color: var(--text);
+}
